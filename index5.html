@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    const root = document.getElementById("root");
+    //1. counter 변수를 선언. 이 변수는 {counter}와 같이 중괄호 형식으로 전달한다.
+    let counter = 0;
+
+    //2. counter를 올려주는 함수를 만든 후 button에서 event listener로 이 함수를 호출한다.
+    function countUp(){
+        counter = counter + 1;
+        //ReactDOM.render(<Container />, root);   //rerendering   
+        //container를 다시 render해서 update된 현재의 counter 값을 보여준다. =>reRender 함수를 만들어서 함수를 호출해준다.
+        render();
+    }
+
+    function render(){
+        ReactDOM.render(<Container />, root);
+    }
+
+    const Container = () => (
+        <div>
+            <h3>Total clicks : {counter}</h3>
+            <button onClick={countUp}>Click me</button>
+        </div>
+    );
+
+    //ReactDOM.render(<Container />, root);
+    //페이지가 로드될 때 위의 코드로 인하여 Container 함수가 root안에서 render 되는데
+    //Container에서의 counter는 초기값으로 보여지며, click event가 UI에 보여지지 않는다 == render가 page load시에 한번만 실행되기 때문
+    //따라서 Containter를 rerender해서 update를 해줄거다.
+
+    render();
+
+    //그러나 값이 업데이트 될때마다 render하는 함수를 호출해하기 때문에 최선의 방법은 아니다. 
+
+</script>
+
+</html>

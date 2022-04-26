@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    const root = document.getElementById("root"); 
+
+    //const Title = <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello I'm a span</h3>
+    //2-1). 함수화하는 방법
+     function Title (){
+         return(
+             <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello I'm a span</h3>
+         );
+     }
+
+    // const Button = <button style={{ backgroudColor: "tomato" }} onClick={() => console.log("im clicked")}>Click me</button>
+    //2-2). 함수화하는 방법 arrow function을 사용(function - return 구문과 동일함)
+    const Button = () => (
+        <button style={{ backgroudColor: "tomato" }} onClick={() => console.log("im clicked")}>Click me</button>
+    );
+
+    // const container = React.createElement("div", null, [Title, Button]);
+    // const Container = <div>Title Button</div>
+    // 컴포넌트 안에 컴포넌트를 넣고 싶을 경우에는 1) 넣을 태그를 함수화 해야한다.
+
+    //3) normal HTML인것처럼 넣어줄거다. 
+    //!!!!!!직접 만든 요소는 전부 대문자로 시작해야된다!!!!!!
+    //소문자로 작성되는 경우 HTML 요소로 인식된다.  ex)<title><button>
+    const Container = () =>(
+        <div>
+            <Title/> 
+            <Button/>
+        </div>
+        //동일한 코드를 재사용할 수 있다. 
+
+    );
+    
+    ReactDOM.render(<Container/>, root);
+</script>
+
+</html>

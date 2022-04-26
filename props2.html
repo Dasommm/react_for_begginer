@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<body>
+		<div id="root"></div>
+	</body>
+	<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script type="text/babel">
+		//컴포넌트를 가지고 원하는 만큼 얼마든지 재사용할 수 있다.
+		//props는 일종의 방식이다. 부모 컴포넌트로(app)부터 자식 컴포넌트(MinutesToHours, KM2M)에 데이터를 보낼 수 있게 해준다.
+
+		//부모 컴포넌트로부터 자식 컴포넌트로 데이터를 보낸다
+
+		function Btn({ text, big }) {
+			//props로 받을 수 있지만 shortcut으로 object로부터 {}을 통해 text에 직접 접근할 수 있다
+			//props는 객체이다.
+			//props,property는 그냥 {property}처럼 사용할수 있다
+			//Btn(argument) 첫번째 argument의 이름은 마음대로 지어줄 수 있다.
+			//이 인자 이름을 props라고 부른다.Btn으로부터 전달받는 properties. 첫번째이자 유일한 인자
+			//props는 넣어둔 모든 것을 첫번째 인자 object로 넘어온다
+			//이 오브젝트는 text라는 이름의 key를 갖고있음
+			//console.log(props);
+			console.log(text, big);
+			return (
+				<button
+					style={{
+						backgroudColor: "tomato",
+						color: "white",
+						padding: "10px 20px",
+						border: 0,
+						borderRadius: 10,
+						fontSize: big ? 18 : 16,
+					}}>
+					{text}
+				</button>
+			);
+		}
+
+		function App() {
+			return (
+				<div>
+					<Btn text="Save Changes" big={true} />
+					<Btn text="Continue" big={false} />
+				</div>
+			);
+			//      Btn({text:"save Change"})로 함수 호출하는 것과 같다
+		}
+		const root = document.getElementById("root");
+		ReactDOM.render(<App />, root);
+	</script>
+</html>

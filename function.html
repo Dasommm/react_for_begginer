@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    const root = document.getElementById("root");
+
+    function App() {
+        const [counter, setCounter] = React.useState(0);
+        const onClick = () => {
+            //state을 setting 하는 2가지 방법 
+            
+            //1. 원하는 값으로 직접 지정하기. ex) setCounter(5)
+            //setCounter(counter + 1); //이런 코드는 별로 안좋다. 왜냐하면 counter의 값이 다른데에서 바뀔 수 있다.
+            
+            //2. 함수를 전달하기. 
+            setCounter((current) => current +1); //current는 현재의 값
+            //함수를 만들어 이전의 값으로 현재의 값을 계산하기
+            //함수의 첫번째 인자는 현재state이다.
+        }
+
+        return (
+            <div>
+                <h3>Total clicks : {counter}</h3>
+                <button onClick={onClick}>Click me</button>
+            </div>
+        );
+    }
+
+    ReactDOM.render(<App />, root);
+
+</script>
+
+</html>

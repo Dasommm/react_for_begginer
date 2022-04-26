@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script
+        src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script>
+        const root = document.getElementById("root"); //기존의 JavaScript처럼 root를 가져온다.
+        const h3 = React.createElement("h3", {
+            id: "title",
+            onMouseEnter: () => console.log("mouse enter")
+            //on을 붙여서 event listener를 생성하고 있다고 인식하게 해준다.
+        }, "Hello I'm a span");
+
+        const btn = React.createElement("button", {
+            onClick: () => console.log("im clicked"),   //button이 클릭될때 마다 실행될 function을 작성한다.
+            style: {
+                backgroudColor: "tomato"
+            }
+        }, "Click me");
+        const container = React.createElement("div", null, [h3, btn]);
+
+        ReactDOM.render(container, root);
+        //한 화면에 두가지 component 넣고 싶다면 div 같은 element에 array로 생성해서 차례대로 넣는다.
+    </script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    //아래 스크립트에 HTML태그가 들어가면 브라우저가 JSX를 이해하지 못하기 때문에 오류가 생긴다. 
+    //따라서 브라우저가 인식할 수 있도록 변환해야한다. 이를 위해서 babel을 사용하는데, import 받아서 변환을 해준다. 
+    //import 후에는 srcipt type을 text/babel로 지정해주어야한다.
+    //우리가 적은 script를 babel이 변환해서 head에 담아서 브라우저에 실행할 수 있게 해준다. 
+    
+    const root = document.getElementById("root"); //기존의 JavaScript처럼 root를 가져온다.
+    
+    // const h3 = React.createElement("h3", {
+        //     id: "title",
+        //     onMouseEnter: () => console.log("mouse enter")
+        //     //on을 붙여서 event listener를 생성하고 있다고 인식하게 해준다.
+        // }, "Hello I'm a span");
+        
+        //::::::::JSX를 사용하여 보다 편리하게 작성한다.(HTML과 같은 규칙으로 작성한다)
+    const Title = <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello I'm a span</h3>
+    //props는 HTML과 동일하게 태그안에 속성값으로 넣으면 되는데, Event Listener도 태그안에 속성값으로 같이 넣으면 된다.
+    //바뀌는것은 :이 =로 바뀌는 것과 {}로 감싸준다는 것
+
+    // const btn = React.createElement("button", {
+    //     onClick: () => console.log("im clicked"),   //button이 클릭될때 마다 실행될 function을 작성한다.
+    //     style: {
+    //         backgroudColor: "tomato"
+    //     }
+    // }, "Click me");
+    const Button = <button style={{backgroudColor: "tomato"}} onClick={() => console.log("im clicked")}>Click me</button>
+
+    const container = React.createElement("div", null, [Title, Button]);
+
+    ReactDOM.render(container, root);
+        //한 화면에 두가지 component 넣고 싶다면 div 같은 element에 array로 생성해서 차례대로 넣는다.
+</script>
+
+</html>

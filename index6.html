@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    const root = document.getElementById("root");
+    //목표 : 데이터가 변하면 render가 될 수 있도록한다.
+    
+    //1. let counter = 0; 이런 형식으로 변수를 선언할 수 있지만 react에서 다른 방법으로 사용할 수 있다.
+
+    function App () {
+        // const data = React.useState(0);
+//         const data = React.useState();  =>  [undefined, f] 로 찍힘.
+//         undefined는 data이고 
+//         f는 data를 바꿀 때 사용하는 함수
+//         React.useState() 함수는 초기값을 설정할 수 있음 ex) React.useState(0) => [0,f]
+//         즉, undefined는 초기값이고 두 번째 요소인 f는 그 값을 바꾸는 함수
+
+//         이 배열은
+//         const x = [1, 2, 3]
+//         const [a, b, c] = x; 이런식으로 값을 꺼내어 변수에 저장할 수 있다.
+//         ※ a = 1, b = 2, c = 3 
+
+        // const counter = data[0];
+        // const modifier = data[1]; 와 같은 식으로 변수를 할당해도 되지만 아래와 같이 더욱 간결하게 코드를 작성한다.
+        const[counter,setCounter] = React.useState(0);
+        const onClick = () =>{
+            setCounter(counter + 1); //함수를 실행하고 자동으로 rendering 해준다
+        }
+
+        //modifier 함수를 가지고 state를 변경할 때 컴포넌트가 재생성된다 새로운 값을 갖고 리랜더링된다.
+        //state가 바뀌면 새로운 값을 가지고 다시 render된다. 
+        //
+    return (
+        <div>
+            <h3>Total clicks : {counter}</h3>
+            <button onClick={onClick}>Click me</button>
+        </div>
+    );
+    }
+
+   ReactDOM.render(<App />, root);
+
+</script>
+
+</html>
